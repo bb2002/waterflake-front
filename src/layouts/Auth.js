@@ -21,15 +21,16 @@ export default function Auth() {
             className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
             style={{
               backgroundImage:
-                "url(" + require("assets/img/register_bg_2.png").default + ")",
+                "url(" + require("assets/img/wallpapers/minecraft-2.jpg").default + ")",
+              backgroundSize: "cover",
+              filter: "brightness(0.4)"
             }}
           ></div>
+          <div style={{ marginTop: 64 }} />
           <Switch>
             <Route path="/auth/login" exact component={Login} />
-            <Route path="/auth/register" exact component={Register} />
             <Redirect from="/auth" to="/auth/login" />
           </Switch>
-          <FooterSmall absolute />
         </section>
       </main>
     </>

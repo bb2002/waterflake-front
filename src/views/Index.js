@@ -55,10 +55,10 @@ export default function Index() {
                   <i className="fas fa-file-alt text-xl"></i>
                 </div>
                 <h3 className="text-3xl font-semibold">
-                  무료 베타 서비스
+                  Dashboard 로 터널 관리
                 </h3>
                 <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                  Waterflake Project를 이용하면 복잡한 도메인, 방화벽 설정 없이 도메인 서버를 호스팅 할 수 있습니다. 현재 베타 서비스를 운영중이며, 추후 더 많은 기능과 서비스를 제공할 예정입니다.
+                  새 터널을 만들고, 게임 서버에 플러그인을 설치하면 이후 모든 과정은 Waterflake가 알아서 해결합니다. 도메인 서버를 열기 위해 그 이상의 노력은 필요 없습니다.
                 </p>
               </div>
             </div>
