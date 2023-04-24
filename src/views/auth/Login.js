@@ -1,16 +1,18 @@
-import React, {CSSProperties, useEffect} from 'react';
+import React, {CSSProperties, useEffect, useState} from 'react';
 import { gapi } from 'gapi-script'
 import { GoogleLogin } from 'react-google-login'
 import KakaoLogin from 'react-kakao-login';
+import axios from 'axios';
+import {kakaoLoginAxios} from '../../axios/login.axios';
 
 const TOKEN = {
   googleClientId: "395532129647-9i6uovdbb9d5i08u21scr7cc9pp24gtg.apps.googleusercontent.com",
   kakaoAccessToken: "ee6f852c642f85695e52513062b6b715"
 }
 
-
-
 export default function Login() {
+  localStorage.clear()
+
   useEffect(() => {
     gapi.load('client:auth2', () => {
       gapi.client.init({
@@ -20,8 +22,21 @@ export default function Login() {
     })
   }, [])
 
-  const onKakaoLoginSuccess = (response) => {
-    console.log('KAKAO', response);
+  const [loginProcess, setLoginProcess] = useState(false)
+
+  const saveTokenAndRedirect = (token) =>  {
+    localStorage.setItem('token', token);
+    window.location.replace('/admin');
+  }
+
+  const onKakaoLoginSuccess = async (response) => {
+    const accessToken = response.response.access_token;
+    setLoginProcess(true);
+
+    const loginResult = await kakaoLoginAxios(accessToken);
+    if (loginResult.data.accessToken) {
+      saveTokenAndRedirect(loginResult.data.accessToken);
+    }
   }
 
   const onGoogleLoginSuccess = (response) => {
@@ -49,7 +64,7 @@ export default function Login() {
                     Waterflake 에 로그인
                   </h6>
                 </div>
-                <div className="btn-wrapper text-center" style={{ marginTop: 32 }}>
+                <div className="btn-wrapper text-center" style={{ marginTop: 32, visibility: loginProcess ? 'hidden' : 'visible'}}>
                   <>
                     <GoogleLogin
                       clientId={TOKEN.googleClientId}

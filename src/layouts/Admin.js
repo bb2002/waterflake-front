@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
 
 // components
@@ -14,8 +14,22 @@ import Dashboard from "views/admin/Dashboard.js";
 import Maps from "views/admin/Maps.js";
 import Settings from "views/admin/Settings.js";
 import Tables from "views/admin/Tables.js";
+import {validateTokenAxios} from '../axios/login.axios';
 
 export default function Admin() {
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      validateTokenAxios(token).then((response) => {
+        if (!response.data.snsId) {
+          window.location.href = '/';
+        }
+      })
+    } else {
+      window.location.href = '/';
+    }
+  }, [])
+
   return (
     <>
       <Sidebar />

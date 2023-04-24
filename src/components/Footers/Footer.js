@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="flex flex-wrap items-center md:justify-between justify-center">
           <div className="w-full md:w-4/12 px-4 mx-auto text-center">
             <div className="text-sm text-blueGray-500 font-semibold py-1">
-              © 2015-{new Date().getFullYear()} ballbot.dev, Designed by {" "}
+              © 2015-{new Date().getFullYear()} Waterflake Project, Designed by {" "}
               <a
                 href="https://www.creative-tim.com?ref=nr-footer"
                 className="text-blueGray-500 hover:text-blueGray-800"
