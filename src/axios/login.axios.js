@@ -1,25 +1,13 @@
 import baseAxios from './base.axios.js';
 
 export function validateTokenAxios(accessToken) {
-  return baseAxios().get('/users/profile', {
-    headers: {
-      'Authorization': `Bearer ${accessToken}`
-    }
-  })
+  return baseAxios(accessToken).get('/users/profile')
 }
 
 export function kakaoLoginAxios(accessToken) {
-  return baseAxios().post('/auth/kakao', {}, {
-    headers: {
-      'Authorization': `Bearer ${accessToken}`
-    }
-  })
+  return baseAxios(accessToken).post('/auth/kakao')
 }
 
 export function googleLoginAxios(accessToken) {
-  return baseAxios().post('/auth/google', {}, {
-    headers: {
-      'Authorization': `Bearer ${accessToken}`
-    }
-  })
+  return baseAxios(accessToken).post('/auth/google')
 }

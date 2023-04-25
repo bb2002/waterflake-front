@@ -1,11 +1,23 @@
 /*eslint-disable*/
-import React from "react";
+import React, {useEffect, useState} from 'react';
 import { Link } from "react-router-dom";
 
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
+import {getAllTunnelsAxios} from '../../axios/tunnel.axios';
 
 export default function Sidebar() {
+  const [tunnels, setTunnels] = useState([]);
+
+  useEffect(() => {
+    getAllTunnelsAxios().then((response) => {
+      setTunnels(response.data.map((tunnel) => ({
+        clientId: tunnel.clientId,
+        name: tunnel.name,
+      })))
+    })
+  }, [])
+
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
     <>
@@ -175,15 +187,19 @@ export default function Sidebar() {
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              <li className="items-center">
-                <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  to="/auth/login"
-                >
-                  <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  A MINECRAFT SERVER
-                </Link>
-              </li>
+              {
+                tunnels.map((value) => (
+                  <li className="items-center">
+                    <Link
+                      className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                      to={`/admin/dashboard/${value.clientId}`}
+                    >
+                      <i className="fas fa-network-wired text-blueGray-400 mr-2 text-sm"></i>{" "}
+                      {value.name}
+                    </Link>
+                  </li>
+                ))
+              }
             </ul>
           </div>
         </div>

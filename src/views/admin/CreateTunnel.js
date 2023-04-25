@@ -1,9 +1,58 @@
-import React from "react";
+import React, {useState} from 'react';
+import {createTunnelAxios} from '../../axios/tunnel.axios';
+
+const createTunnelFormDefault = {
+  localServer: 'minecraft_java',
+  name: '',
+  subDomain: '',
+  rootDomain: 'blbt.app',
+  planId: 1,
+  regionId: 1,
+}
 
 export default function CreateTunnel() {
+  const [createTunnelForm, setCreateTunnelForm] = useState(createTunnelFormDefault)
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const sendCreateTunnelRequest = async () => {
+    setLoading(true);
+    try {
+      const response = await createTunnelAxios(createTunnelForm);
+
+      if (response.status === 201) {
+        const clientId = response.data.clientId;
+        window.location.href = `/admin/dashboard/${clientId}`
+      }
+
+    } catch(ex) {
+      setErrorMessage(ex.response.data.message)
+    }
+    setLoading(false);
+  }
+
   return (
     <>
+
       <div className="flex flex-wrap">
+        {
+          errorMessage && (
+            <div className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-orange-500" style={{ width: '100%' }}>
+              <span className="inline-block align-middle mr-8">
+                <b className="capitalize">ERROR</b> {errorMessage}
+                <button
+                  className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
+                  onClick={() => setErrorMessage(null)}
+                  style={{ paddingRight: 32 }}
+                >
+                <span>×</span>
+              </button>
+              </span>
+
+            </div>
+          )
+        }
+
         <div className="w-full lg:w-8/12 px-4">
           <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
             <div className="rounded-t bg-white mb-0 px-6 py-6">
@@ -11,6 +60,7 @@ export default function CreateTunnel() {
                 <h6 className="text-blueGray-700 text-xl font-bold">새 터널 만들기</h6>
               </div>
             </div>
+
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
               <form>
                 <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
@@ -29,6 +79,8 @@ export default function CreateTunnel() {
                         type="text"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="관리에 사용할 고유한 이름 입니다."
+                        onChange={(e) => setCreateTunnelForm({...createTunnelForm, name: e.target.value})}
+                        value={createTunnelForm.name}
                       />
                     </div>
                   </div>
@@ -43,7 +95,9 @@ export default function CreateTunnel() {
                       <select
                         name="region"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        defaultValue="Lucky"
+                        defaultValue="minecraft_java"
+                        onChange={(e) => setCreateTunnelForm({...createTunnelForm, localServer: e.target.value})}
+                        value={createTunnelForm.localServer}
                       >
                         <option value="minecraft_java">마인크래프트 자바 에디션</option>
                       </select>
@@ -68,6 +122,10 @@ export default function CreateTunnel() {
                         type="text"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="서버 접속에 필요한 주소"
+                        minLength={4}
+                        maxLength={30}
+                        value={createTunnelForm.subDomain}
+                        onChange={(e) => setCreateTunnelForm({...createTunnelForm, subDomain: e.target.value })}
                       />
                     </div>
                   </div>
@@ -82,7 +140,9 @@ export default function CreateTunnel() {
                       <select
                         name="rootDomain"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        defaultValue="Lucky"
+                        defaultValue="blbt.app"
+                        onChange={(e) => setCreateTunnelForm({...createTunnelForm, rootDomain: e.target.value})}
+                        value={createTunnelForm.rootDomain}
                       >
                         <option value="blbt.app">blbt.app</option>
                         <option value="waterflake.co">waterflake.co</option>
@@ -100,7 +160,7 @@ export default function CreateTunnel() {
                       <input
                         type="text"
                         readOnly={true}
-                        value="minecraft.blbt.app"
+                        value={`${createTunnelForm.subDomain.toLowerCase()}.${createTunnelForm.rootDomain}`}
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       />
                     </div>
@@ -116,9 +176,11 @@ export default function CreateTunnel() {
                       <select
                         name="region"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        defaultValue="Lucky"
+                        defaultValue="1"
+                        onChange={(e) => setCreateTunnelForm({...createTunnelForm, regionId: Number(e.target.value)})}
+                        value={createTunnelForm.regionId}
                       >
-                        <option value="KR-SUWON-1">KR-SUWON-1</option>
+                        <option value="1">KR-SUWON-1</option>
                       </select>
                     </div>
                   </div>
@@ -130,8 +192,13 @@ export default function CreateTunnel() {
                   <button
                     className="bg-emerald-500 active:bg-lightBlue-600 uppercase text-white font-bold hover:shadow-md shadow px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                     type="button"
+                    onClick={() => sendCreateTunnelRequest()}
+                    disabled={loading}
                   >
-                    <i className="fas fa-check mr-2 text-sm"></i>{" "}터널 생성
+                    {
+                      loading ? <><i className="fas fa-truck-loading mr-2 text-sm"></i>{" "}처리 중</> : <><i className="fas fa-check mr-2 text-sm"></i>{" "}터널 생성</>
+                    }
+
                   </button>
                 </div>
               </form>
