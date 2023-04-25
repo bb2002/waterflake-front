@@ -7,6 +7,15 @@ import Footer from "components/Footers/Footer.js";
 import "../assets/styles/customs/Main.css"
 
 export default function Index() {
+
+  const gettingStart = () => {
+    if (localStorage.getItem('token')) {
+      window.location.href = '/admin/dashboard';
+    }  else {
+      window.location.href = '/auth/login';
+    }
+  }
+
   return (
     <>
       <IndexNavbar fixed />
@@ -34,9 +43,9 @@ export default function Index() {
               </ul>
               <div className="mt-12">
                 <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus?ref=nr-index"
-                  target="_blank"
                   className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-orange-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+                  onClick={() => gettingStart()}
+                  style={{ cursor: "pointer" }}
                 >
                   무료로 시작하기
                 </a>

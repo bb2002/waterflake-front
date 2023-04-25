@@ -15,3 +15,11 @@ export function kakaoLoginAxios(accessToken) {
     }
   })
 }
+
+export function googleLoginAxios(accessToken) {
+  return baseAxios().post('/auth/google', {}, {
+    headers: {
+      'Authorization': `Bearer ${accessToken}`
+    }
+  })
+}

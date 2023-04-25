@@ -39,9 +39,9 @@ Here are all the page from the project:
 - [Presentation](https://demos.creative-tim.com/notus-react/?ref=nr-github-readme)
 - Admin Samples
   - [Dashboard](https://demos.creative-tim.com/notus-react/admin/dashboard?ref=nr-github-readme)
-  - [Settings](https://demos.creative-tim.com/notus-react/admin/settings?ref=nr-github-readme)
+  - [UserProfile](https://demos.creative-tim.com/notus-react/admin/settings?ref=nr-github-readme)
   - [Tables](https://demos.creative-tim.com/notus-react/admin/tables?ref=nr-github-readme)
-  - [Maps](https://demos.creative-tim.com/notus-react/admin/maps?ref=nr-github-readme)
+  - [CreateTunnel](https://demos.creative-tim.com/notus-react/admin/maps?ref=nr-github-readme)
 - Authentication Samples
   - [Login](https://demos.creative-tim.com/notus-react/auth/login?ref=nr-github-readme)
   - [Register](https://demos.creative-tim.com/notus-react/auth/register?ref=nr-github-readme)
@@ -156,7 +156,7 @@ notus-react
 │   │   │   └── FooterSmall.js
 │   │   ├── Headers
 │   │   │   └── HeaderStats.js
-│   │   ├── Maps
+│   │   ├── CreateTunnel
 │   │   │   └── MapExample.js
 │   │   ├── Navbars
 │   │   │   ├── AdminNavbar.js
@@ -174,8 +174,8 @@ notus-react
 │       ├── Profile.js
 │       ├── admin
 │       │   ├── Dashboard.js
-│       │   ├── Maps.js
-│       │   ├── Settings.js
+│       │   ├── CreateTunnel.js
+│       │   ├── UserProfile.js
 │       │   └── Tables.js
 │       └── auth
 │           ├── Login.js

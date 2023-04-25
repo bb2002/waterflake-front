@@ -3,7 +3,7 @@ import { gapi } from 'gapi-script'
 import { GoogleLogin } from 'react-google-login'
 import KakaoLogin from 'react-kakao-login';
 import axios from 'axios';
-import {kakaoLoginAxios} from '../../axios/login.axios';
+import {googleLoginAxios, kakaoLoginAxios} from '../../axios/login.axios';
 
 const TOKEN = {
   googleClientId: "395532129647-9i6uovdbb9d5i08u21scr7cc9pp24gtg.apps.googleusercontent.com",
@@ -39,8 +39,14 @@ export default function Login() {
     }
   }
 
-  const onGoogleLoginSuccess = (response) => {
-    console.log('GOOGLE', response);
+  const onGoogleLoginSuccess = async (response) => {
+    const accessToken = response.accessToken;
+    setLoginProcess(true)
+
+    const loginResult = await googleLoginAxios(accessToken);
+    if (loginResult.data.accessToken) {
+      saveTokenAndRedirect(loginResult.data.accessToken);
+    }
   }
 
   const KakaoLoginStyle = {
