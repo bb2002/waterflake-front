@@ -1,37 +1,46 @@
 import React from "react";
 import Chart from "chart.js";
 
-export default function CardBarChart() {
+export default function ConnectionChart() {
   React.useEffect(() => {
     let config = {
       type: "bar",
       data: {
         labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
+          "04/26 0시",
+          "04/26 1시",
+          "04/26 2시",
+          "04/26 3시",
+          "04/26 4시",
+          "04/26 5시",
+          "04/26 6시",
+          "04/26 7시",
+          "04/26 8시",
+          "04/26 9시",
+          "04/26 10시",
+          "04/26 11시",
+          "04/26 12시",
+          "04/26 13시",
+          "04/26 14시",
+          "04/26 15시",
+          "04/26 16시",
+          "04/26 17시",
+          "04/26 18시",
+          "04/26 19시",
+          "04/26 20시",
+          "04/26 21시",
+          "04/26 22시",
+          "04/26 23시",
         ],
         datasets: [
           {
-            label: new Date().getFullYear(),
+            label: '접속자(명)',
             backgroundColor: "#ed64a6",
             borderColor: "#ed64a6",
-            data: [30, 78, 56, 34, 100, 45, 13],
+            data: [5,1,3,4,5,6,1,5,10,10,12,13,15,16,18,20,22,24,26,28,30,32,34,36],
             fill: false,
-            barThickness: 8,
-          },
-          {
-            label: new Date().getFullYear() - 1,
-            fill: false,
-            backgroundColor: "#4c51bf",
-            borderColor: "#4c51bf",
-            data: [27, 68, 86, 74, 10, 4, 87],
-            barThickness: 8,
-          },
+            barThickness: 20,
+          }
         ],
       },
       options: {
@@ -105,10 +114,10 @@ export default function CardBarChart() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
-                Performance
+                24시간 통계
               </h6>
               <h2 className="text-blueGray-700 text-xl font-semibold">
-                Total orders
+                평균 접속자
               </h2>
             </div>
           </div>

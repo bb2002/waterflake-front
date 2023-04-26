@@ -40,7 +40,7 @@ Here are all the page from the project:
 - Admin Samples
   - [Dashboard](https://demos.creative-tim.com/notus-react/admin/dashboard?ref=nr-github-readme)
   - [UserProfile](https://demos.creative-tim.com/notus-react/admin/settings?ref=nr-github-readme)
-  - [Tables](https://demos.creative-tim.com/notus-react/admin/tables?ref=nr-github-readme)
+  - [ViewTunnel](https://demos.creative-tim.com/notus-react/admin/tables?ref=nr-github-readme)
   - [CreateTunnel](https://demos.creative-tim.com/notus-react/admin/maps?ref=nr-github-readme)
 - Authentication Samples
   - [Login](https://demos.creative-tim.com/notus-react/auth/login?ref=nr-github-readme)
@@ -136,8 +136,8 @@ notus-react
 │   │       └── tailwind.css
 │   ├── components
 │   │   ├── Cards
-│   │   │   ├── CardBarChart.js
-│   │   │   ├── CardLineChart.js
+│   │   │   ├── ConnectionChart.js
+│   │   │   ├── TrafficChart.js
 │   │   │   ├── CardPageVisits.js
 │   │   │   ├── CardProfile.js
 │   │   │   ├── CardSettings.js
@@ -176,7 +176,7 @@ notus-react
 │       │   ├── Dashboard.js
 │       │   ├── CreateTunnel.js
 │       │   ├── UserProfile.js
-│       │   └── Tables.js
+│       │   └── ViewTunnel.js
 │       └── auth
 │           ├── Login.js
 │           └── Register.js

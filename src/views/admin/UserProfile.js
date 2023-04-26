@@ -1,11 +1,18 @@
-import React from "react";
-
-// components
-
-import CardSettings from "components/Cards/CardSettings.js";
-import CardProfile from "components/Cards/CardProfile.js";
+import React, {useEffect} from "react";
+import {validateTokenAxios} from "../../axios/login.axios";
 
 export default function UserProfile() {
+  const [profile, setProfile] = React.useState(null)
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    validateTokenAxios(token).then((response) => {
+      setProfile({
+        ...response.data
+      })
+    })
+  }, [])
+
   return (
     <>
       <div className="flex flex-wrap">
@@ -33,7 +40,7 @@ export default function UserProfile() {
                       type="text"
                       readOnly={true}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      defaultValue="볼봇"
+                      value={profile?.name}
                     />
                   </div>
                 </div>
@@ -49,7 +56,7 @@ export default function UserProfile() {
                       type="email"
                       readOnly={true}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      defaultValue="jesse@example.com"
+                      value={profile?.email}
                     />
                   </div>
                 </div>
@@ -65,7 +72,7 @@ export default function UserProfile() {
                       type="text"
                       readOnly={true}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      defaultValue="2023년 04월 17일"
+                      value={profile?.createdAt?.split('T')[0]}
                     />
                   </div>
                 </div>
@@ -89,7 +96,7 @@ export default function UserProfile() {
                       type="text"
                       readOnly={true}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      defaultValue="snsid here"
+                      value={profile?.snsId}
                     />
                   </div>
                 </div>
@@ -106,7 +113,7 @@ export default function UserProfile() {
                       type="email"
                       readOnly={true}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      defaultValue="KAKAO"
+                      value={profile?.loginProvider?.toUpperCase()}
                     />
                   </div>
                 </div>

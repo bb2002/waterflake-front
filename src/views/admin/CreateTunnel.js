@@ -16,6 +16,16 @@ export default function CreateTunnel() {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const sendCreateTunnelRequest = async () => {
+    if (createTunnelForm.name?.length < 4) {
+      setErrorMessage('"서버이름"은 최소 4글자 이상 입력해주세요.');
+      return;
+    }
+
+    if (createTunnelForm.subDomain?.length < 4) {
+      setErrorMessage('"서브도메인"은 최소 4글자 이상 입력해주세요.');
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await createTunnelAxios(createTunnelForm);
@@ -48,7 +58,6 @@ export default function CreateTunnel() {
                 <span>×</span>
               </button>
               </span>
-
             </div>
           )
         }
@@ -116,7 +125,7 @@ export default function CreateTunnel() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
                       >
-                        서브 도메인 (최소 4자, 최대 30지)
+                        서브 도메인 (최소 4자, 최대 30자, 영어와 숫자만 입력 가능)
                       </label>
                       <input
                         type="text"
@@ -125,7 +134,7 @@ export default function CreateTunnel() {
                         minLength={4}
                         maxLength={30}
                         value={createTunnelForm.subDomain}
-                        onChange={(e) => setCreateTunnelForm({...createTunnelForm, subDomain: e.target.value })}
+                        onChange={(e) => setCreateTunnelForm({...createTunnelForm, subDomain: e.target.value?.replace(/[^a-zA-Z0-9]/g, "") })}
                       />
                     </div>
                   </div>

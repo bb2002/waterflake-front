@@ -13,7 +13,7 @@ import FooterAdmin from "components/Footers/FooterAdmin.js";
 import Dashboard from "views/admin/Dashboard.js";
 import CreateTunnel from "views/admin/CreateTunnel.js";
 import UserProfile from "views/admin/UserProfile.js";
-import Tables from "views/admin/Tables.js";
+import ViewTunnel from "views/admin/ViewTunnel.js";
 import {validateTokenAxios} from '../axios/login.axios';
 
 export default function Admin() {
@@ -43,7 +43,7 @@ export default function Admin() {
             <Route path="/admin/dashboard" exact component={Dashboard} />
             <Route path="/admin/add" exact component={CreateTunnel} />
             <Route path="/admin/settings" exact component={UserProfile} />
-            <Route path="/admin/tables" exact component={Tables} />
+            <Route path="/admin/dashboard/:clientId" exact component={ViewTunnel} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
           <FooterAdmin />
