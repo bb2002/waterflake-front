@@ -205,7 +205,7 @@ export default function CreateTunnel() {
                     disabled={loading}
                   >
                     {
-                      loading ? <><i className="fas fa-truck-loading mr-2 text-sm"></i>{" "}처리 중</> : <><i className="fas fa-check mr-2 text-sm"></i>{" "}터널 생성</>
+                      loading ? <><i className="fas fa-spin mr-2 text-sm"></i>{" "}처리 중</> : <><i className="fas fa-check mr-2 text-sm"></i>{" "}터널 생성</>
                     }
 
                   </button>

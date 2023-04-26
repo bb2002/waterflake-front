@@ -114,10 +114,10 @@ export default function ConnectionChart() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
-                24시간 통계
+                24시간 평균
               </h6>
               <h2 className="text-blueGray-700 text-xl font-semibold">
-                평균 접속자
+                38
               </h2>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 import {useParams} from "react-router";
-import {getTunnelAxios} from "../../axios/tunnel.axios";
+import {editTunnelAxios, getTunnelAxios} from '../../axios/tunnel.axios';
 import TrafficChart from "../../components/Cards/TrafficChart";
 import ConnectionChart from "../../components/Cards/ConnectionChart";
 
@@ -10,6 +10,8 @@ const color = 'light'
 export default function ViewTunnel() {
   const params = useParams()
   const [tunnel, setTunnel] = useState(null);
+  const [editServerName, setEditServerName] = useState(false);
+  const [newServerName, setNewServerName] = useState('')
 
   useEffect(() => {
     setTunnel(null)
@@ -18,10 +20,21 @@ export default function ViewTunnel() {
     })
   }, [params])
 
+  const editOrSave = () => {
+    if (editServerName) {
+      editTunnelAxios(tunnel.clientId, { name: newServerName }).then((res) => {
+        window.location.reload(false);
+      })
+    } else {
+      setEditServerName(true);
+      setNewServerName(tunnel?.name)
+    }
+  }
+
   if (params.clientId) {
     if (tunnel) {
       return (
-          <div className="flex flex-wrap mt-4">
+          <div className="flex flex-wrap mt-4" style={{ maxWidth: 1024 }}>
             <div className="w-full mb-12 px-4">
               <div
                 className={
@@ -60,7 +73,22 @@ export default function ViewTunnel() {
                         </span>
                       </th>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-s whitespace-nowrap p-4" style={{width: 250}}>
-                        {tunnel.name}
+                        {
+                          editServerName ? (
+                            <input
+                              type="text"
+                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                              placeholder="서버 이름을 입력하세요."
+                              value={newServerName}
+                              onChange={(e) => setNewServerName(e.target.value)}
+                            />
+                          ) : <>{tunnel.name}</>
+                        }
+                      </td>
+                      <td>
+                        <button className="bg-indigo-500 text-white active:bg-indigo-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onClick={editOrSave}>
+                          {editServerName ? <><i className="fas fa-save"></i> 저장</> : <><i className="fas fa-edit"></i> 수정</>}
+                        </button>
                       </td>
                     </tr>
                     <tr>
@@ -169,10 +197,31 @@ export default function ViewTunnel() {
                     </tbody>
                   </table>
                 </div>
+                <div style={{ margin: 32 }}>
+                  <h2
+                    className={
+                      "font-semibold text-lg " +
+                      (color === "light" ? "text-blueGray-700" : "text-white")
+                    }
+                    style={{ fontSize: '1.75rem', marginTop: 16, marginBottom: 16 }}
+                  >
+                    트래픽 사용량
+                  </h2>
+                  <TrafficChart />
+                </div>
+                <div style={{ margin: 32 }}>
+                  <h2
+                    className={
+                      "font-semibold text-lg " +
+                      (color === "light" ? "text-blueGray-700" : "text-white")
+                    }
+                    style={{ fontSize: '1.75rem', marginTop: 16, marginBottom: 16 }}
+                  >
+                    평균 접속자
+                  </h2>
+                  <ConnectionChart />
+                </div>
               </div>
-
-              <TrafficChart />
-              <ConnectionChart />
             </div>
           </div>
       )

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
 
 // components
@@ -17,6 +17,8 @@ import ViewTunnel from "views/admin/ViewTunnel.js";
 import {validateTokenAxios} from '../axios/login.axios';
 
 export default function Admin() {
+  const [profile, setProfile] = useState();
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -24,6 +26,8 @@ export default function Admin() {
         if (!response.data.snsId) {
           localStorage.clear();
           window.location.href = '/';
+        } else {
+          setProfile(response.data)
         }
       })
     } else {
@@ -34,8 +38,8 @@ export default function Admin() {
   return (
     <>
       <Sidebar />
-      <div className="relative md:ml-64 bg-blueGray-100">
-        <AdminNavbar />
+      <div className="relative md:ml-64 bg-blueGray-100" style={{ minHeight: '100vh' }}>
+        <AdminNavbar profileImageUrl={profile?.thumbnailUrl}/>
         {/* Header */}
         <HeaderStats />
         <div className="px-4 md:px-10 mx-auto w-full -m-24">

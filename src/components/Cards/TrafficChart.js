@@ -123,9 +123,9 @@ export default function TrafficChart() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
-                24시간 통계
+                24시간 총
               </h6>
-              <h2 className="text-white text-xl font-semibold">트래픽 사용량</h2>
+              <h2 className="text-white text-xl font-semibold">12.4GB</h2>
             </div>
           </div>
         </div>

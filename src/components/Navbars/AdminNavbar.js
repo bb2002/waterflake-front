@@ -3,7 +3,7 @@ import React from "react";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 import {Link} from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ profileImageUrl }) {
   return (
     <>
       {/* Navbar */}
@@ -18,7 +18,7 @@ export default function Navbar() {
           </Link>
           {/* User */}
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
-            <UserDropdown />
+            <UserDropdown profileImageUrl={profileImageUrl}/>
           </ul>
         </div>
       </nav>
