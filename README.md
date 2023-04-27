@@ -38,7 +38,7 @@ to quickly set up the basic structure for your web project.
 Here are all the page from the project:
 - [Presentation](https://demos.creative-tim.com/notus-react/?ref=nr-github-readme)
 - Admin Samples
-  - [Dashboard](https://demos.creative-tim.com/notus-react/admin/dashboard?ref=nr-github-readme)
+  - [Landing](https://demos.creative-tim.com/notus-react/admin/dashboard?ref=nr-github-readme)
   - [UserProfile](https://demos.creative-tim.com/notus-react/admin/settings?ref=nr-github-readme)
   - [ViewTunnel](https://demos.creative-tim.com/notus-react/admin/tables?ref=nr-github-readme)
   - [CreateTunnel](https://demos.creative-tim.com/notus-react/admin/maps?ref=nr-github-readme)
@@ -173,7 +173,7 @@ notus-react
 │       ├── Landing.js
 │       ├── Profile.js
 │       ├── admin
-│       │   ├── Dashboard.js
+│       │   ├── Landing.js
 │       │   ├── CreateTunnel.js
 │       │   ├── UserProfile.js
 │       │   └── ViewTunnel.js

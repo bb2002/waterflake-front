@@ -10,11 +10,12 @@ import FooterAdmin from "components/Footers/FooterAdmin.js";
 
 // views
 
-import Dashboard from "views/admin/Dashboard.js";
+import Landing from "views/admin/Landing.js";
 import CreateTunnel from "views/admin/CreateTunnel.js";
 import UserProfile from "views/admin/UserProfile.js";
 import ViewTunnel from "views/admin/ViewTunnel.js";
 import {validateTokenAxios} from '../axios/login.axios';
+import Download from "../views/admin/Download";
 
 export default function Admin() {
   const [profile, setProfile] = useState();
@@ -44,9 +45,10 @@ export default function Admin() {
         <HeaderStats />
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <Switch>
-            <Route path="/admin/dashboard" exact component={Dashboard} />
+            <Route path="/admin/dashboard" exact component={Landing} />
             <Route path="/admin/add" exact component={CreateTunnel} />
             <Route path="/admin/settings" exact component={UserProfile} />
+            <Route path="/admin/downloads" exact component={Download} />
             <Route path="/admin/dashboard/:clientId" exact component={ViewTunnel} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
