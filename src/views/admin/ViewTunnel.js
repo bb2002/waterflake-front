@@ -207,7 +207,7 @@ export default function ViewTunnel() {
                   >
                     트래픽 사용량
                   </h2>
-                  <TrafficChart />
+                  <TrafficChart clientId={tunnel.clientId}/>
                 </div>
                 <div style={{ margin: 32 }}>
                   <h2
@@ -219,7 +219,7 @@ export default function ViewTunnel() {
                   >
                     평균 접속자
                   </h2>
-                  <ConnectionChart />
+                  <ConnectionChart clientId={tunnel.clientId}/>
                 </div>
               </div>
             </div>

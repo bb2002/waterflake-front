@@ -1,43 +1,31 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Chart from "chart.js";
+import {getConnectionStatisticsAxios, getTrafficStatisticAxios} from "../../axios/statistic.axios";
 
-export default function ConnectionChart() {
+export default function ConnectionChart({ clientId }) {
+  const [connectionData, setConnectionData] = React.useState([])
+
+  useEffect(() => {
+    getConnectionStatisticsAxios(clientId)
+      .then((res) => {
+        setConnectionData(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [clientId])
+
   React.useEffect(() => {
     let config = {
       type: "bar",
       data: {
-        labels: [
-          "04/26 0시",
-          "04/26 1시",
-          "04/26 2시",
-          "04/26 3시",
-          "04/26 4시",
-          "04/26 5시",
-          "04/26 6시",
-          "04/26 7시",
-          "04/26 8시",
-          "04/26 9시",
-          "04/26 10시",
-          "04/26 11시",
-          "04/26 12시",
-          "04/26 13시",
-          "04/26 14시",
-          "04/26 15시",
-          "04/26 16시",
-          "04/26 17시",
-          "04/26 18시",
-          "04/26 19시",
-          "04/26 20시",
-          "04/26 21시",
-          "04/26 22시",
-          "04/26 23시",
-        ],
+        labels: connectionData?.map((data) => data.date.slice(5)),
         datasets: [
           {
             label: '접속자(명)',
             backgroundColor: "#ed64a6",
             borderColor: "#ed64a6",
-            data: [5,1,3,4,5,6,1,5,10,10,12,13,15,16,18,20,22,24,26,28,30,32,34,36],
+            data: connectionData?.map((data) => data.value),
             fill: false,
             barThickness: 20,
           }
@@ -106,7 +94,7 @@ export default function ConnectionChart() {
     };
     let ctx = document.getElementById("bar-chart").getContext("2d");
     window.myBar = new Chart(ctx, config);
-  }, []);
+  }, [connectionData]);
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
@@ -114,10 +102,10 @@ export default function ConnectionChart() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
-                24시간 평균
+                20일 평균
               </h6>
               <h2 className="text-blueGray-700 text-xl font-semibold">
-                38
+                {connectionData.map((data) => data.value).reduce((pv, cv) => parseInt(pv) + parseInt(cv), 0) / connectionData?.length}
               </h2>
             </div>
           </div>
