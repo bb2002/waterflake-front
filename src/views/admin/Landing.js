@@ -69,9 +69,12 @@ export default function Landing() {
                     <p className="mt-2 mb-4 text-blueGray-500">
                       디스코드 커뮤니티에서 주요 변경 사항을 확인하고, 버그와 개선 사항을 건의해주세요.
                       <br />
-                      <button className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-                        커뮤니티 참가
-                      </button>
+                      <a href="https://discord.com/invite/JaWV3MUEE2" target="_blank" rel="noreferrer">
+                        <button className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                          커뮤니티 참가
+                        </button>
+                      </a>
+
                     </p>
                   </div>
                 </div>
