@@ -2,13 +2,7 @@ import React from "react";
 
 // components
 
-import TrafficChart from "components/Cards/TrafficChart.js";
-import ConnectionChart from "components/Cards/ConnectionChart.js";
-import CardPageVisits from "components/Cards/CardPageVisits.js";
-import CardSocialTraffic from "components/Cards/CardSocialTraffic.js";
-import Navbar from '../../components/Navbars/AuthNavbar';
 import {Link} from 'react-router-dom';
-import Footer from '../../components/Footers/Footer';
 
 export default function Landing() {
   return (
@@ -199,7 +193,7 @@ export default function Landing() {
               <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
                 <img
                   alt="CreateTunnel"
-                  src={require("assets/img/docs/create-tunnel.png").default}
+                  src={require("assets/img/docs/docs2.png").default}
                   className="w-full align-middle rounded-t-lg"
                   style={{ height: 250, objectFit: "cover" }}
                 />

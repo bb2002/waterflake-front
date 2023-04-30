@@ -2,8 +2,6 @@
 import React, {useEffect, useState} from 'react';
 import { Link } from "react-router-dom";
 
-import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
 import {getAllTunnelsAxios} from '../../axios/tunnel.axios';
 
 export default function Sidebar() {
@@ -38,15 +36,7 @@ export default function Sidebar() {
           >
             WATERFLAKE
           </Link>
-          {/* User */}
-          <ul className="md:hidden items-center flex flex-wrap list-none">
-            <li className="inline-block relative">
-              <NotificationDropdown />
-            </li>
-            <li className="inline-block relative">
-              <UserDropdown />
-            </li>
-          </ul>
+
           {/* Collapse */}
           <div
             className={
@@ -77,8 +67,7 @@ export default function Sidebar() {
               </div>
             </div>
 
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
+            <br />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               관리 메뉴

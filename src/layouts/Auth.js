@@ -1,12 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-
-// components
-
 import Navbar from "components/Navbars/AuthNavbar.js";
-
-// views
-
 import Login from "views/auth/Login.js";
 
 export default function Auth() {

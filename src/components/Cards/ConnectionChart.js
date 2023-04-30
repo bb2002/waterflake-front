@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Chart from "chart.js";
-import {getConnectionStatisticsAxios, getTrafficStatisticAxios} from "../../axios/statistic.axios";
+import {getConnectionStatisticsAxios} from "../../axios/statistic.axios";
 
 export default function ConnectionChart({ clientId }) {
   const [connectionData, setConnectionData] = React.useState([])

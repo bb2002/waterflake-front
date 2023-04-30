@@ -1,8 +1,7 @@
-import React, {CSSProperties, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { gapi } from 'gapi-script'
 import { GoogleLogin } from 'react-google-login'
 import KakaoLogin from 'react-kakao-login';
-import axios from 'axios';
 import {googleLoginAxios, kakaoLoginAxios} from '../../axios/login.axios';
 
 const TOKEN = {

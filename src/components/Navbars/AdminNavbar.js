@@ -1,6 +1,5 @@
 import React from "react";
 
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
 import {Link} from "react-router-dom";
 
 export default function Navbar({ profileImageUrl }) {
@@ -14,11 +13,19 @@ export default function Navbar({ profileImageUrl }) {
             className="text-white text-sm uppercase hidden lg:inline-block font-semibold"
             to="/admin/dashboard"
           >
-            대시보드
+            DASHBOARD
           </Link>
           {/* User */}
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
-            <UserDropdown profileImageUrl={profileImageUrl}/>
+            <div className="items-center flex">
+          <span className="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
+            <img
+              alt="..."
+              className="w-full rounded-full align-middle border-none shadow-lg"
+              src={profileImageUrl}
+            />
+          </span>
+            </div>
           </ul>
         </div>
       </nav>

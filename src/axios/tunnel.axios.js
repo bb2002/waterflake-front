@@ -19,3 +19,8 @@ export function editTunnelAxios(clientId, data) {
   const accessToken = localStorage.getItem('token')
   return baseAxios(accessToken).patch(`/tunnels/${clientId}`, data)
 }
+
+export function deleteTunnelAxios(clientId) {
+  const accessToken = localStorage.getItem('token')
+  return baseAxios(accessToken).delete(`/tunnels/${clientId}`)
+}

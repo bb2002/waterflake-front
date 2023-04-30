@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 import {useParams} from "react-router";
-import {editTunnelAxios, getTunnelAxios} from '../../axios/tunnel.axios';
+import {deleteTunnelAxios, editTunnelAxios, getTunnelAxios} from '../../axios/tunnel.axios';
 import TrafficChart from "../../components/Cards/TrafficChart";
 import ConnectionChart from "../../components/Cards/ConnectionChart";
 
@@ -28,6 +28,18 @@ export default function ViewTunnel() {
     } else {
       setEditServerName(true);
       setNewServerName(tunnel?.name)
+    }
+  }
+
+  const deleteTunnelConfirm = () => {
+    const sure = window.confirm('정말로 터널을 제거하시겠습니까? 접속중인 유저는 모두 연결이 끊어지며, 돌이킬 수 없습니다!')
+    console.log(sure)
+
+    if (sure) {
+      const clientId = tunnel.clientId;
+      deleteTunnelAxios(clientId).then(() => {
+        window.location.href = '/admin/dashboard'
+      })
     }
   }
 
@@ -220,6 +232,50 @@ export default function ViewTunnel() {
                     평균 접속자
                   </h2>
                   <ConnectionChart clientId={tunnel.clientId}/>
+                </div>
+
+                <div className="rounded-t mb-0 px-4 py-3 border-0">
+                  <div className="flex flex-wrap items-center">
+                    <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+                      <h2
+                        className={
+                          "font-semibold text-lg " +
+                          (color === "light" ? "text-blueGray-700" : "text-white")
+                        }
+                        style={{ fontSize: '1.75rem', marginTop: 16, marginBottom: 16 }}
+                      >
+                        DANGEROUS ZONE
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div className="block w-full overflow-x-auto">
+                  {/* Projects table */}
+                  <table className="items-center w-full bg-transparent border-collapse">
+                    <tbody>
+                    <tr>
+                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-s whitespace-nowrap p-4 text-left flex items-center">
+                        <span
+                          className={
+                            "ml-3 font-bold " +
+                            +(color === "light" ? "text-blueGray-600" : "text-white")
+                          }
+                        >
+                          터널 제거
+                        </span>
+                      </th>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-s whitespace-nowrap p-4">
+                        <button className="bg-red-500 text-white active:bg-indigo-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onClick={deleteTunnelConfirm}>
+                          터널 제거
+                        </button>
+                      </td>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        이 작업은 돌이킬 수 없으며, 현재 이 서버에 접속중인 모든 플레이어의 연결이 끊어집니다!
+                      </td>
+                    </tr>
+                    <br />
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

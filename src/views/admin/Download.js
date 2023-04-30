@@ -12,9 +12,11 @@ export default function Download() {
                 <p className="mt-2 mb-4 text-blueGray-500">
                   v0.0.1 BETA (Release 23.04.17)
                   <br /><br />
-                  <button className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-                    <i className="fas fa-download"></i> {" "}다운로드
-                  </button>
+                  <a href="https://firebasestorage.googleapis.com/v0/b/waterflake.appspot.com/o/WaterflakePlugin%2FWaterflakePlugin-0.0.1-BETA.jar?alt=media&token=ca55fb71-a216-4a4e-9aa6-a57ece058178" target="_blank" rel="noreferrer">
+                    <button className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                      <i className="fas fa-download"></i> {" "}다운로드
+                    </button>
+                  </a>
                 </p>
               </div>
             </div>
